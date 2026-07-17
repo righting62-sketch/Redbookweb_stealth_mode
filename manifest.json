@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "小红书样式美化",
+  "version": "1.0.0",
+  "description": "自动将小红书网页的红色品牌元素替换为透明色/白色，使页面更加低调",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.xiaohongshu.com/*",
+        "*://xiaohongshu.com/*"
+      ],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "permissions": [],
+  "host_permissions": [
+    "*://www.xiaohongshu.com/*",
+    "*://xiaohongshu.com/*"
+  ]
+}

@@ -1,0 +1,321 @@
+/* ============================================
+   小红书网页版 - 红色元素透明化/白色化样式表
+   目标：将所有红色品牌元素替换为低调颜色
+   ============================================ */
+
+/* --- 1. 顶部导航栏 Logo --- */
+/* 覆盖小红书 logo 容器，使其透明 */
+a[href*="xiaohongshu.com"] svg,
+.header .logo,
+.nav-logo,
+.brand-logo,
+.logo-container,
+[class*="logo"] svg,
+[class*="Logo"] svg,
+a[class*="logo"],
+a[class*="Logo"],
+.navbar-logo,
+.top-logo {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 备选：如果 logo 是 img 标签，尝试将其变白 */
+.logo img,
+[class*="logo"] img,
+[class*="Logo"] img {
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.3 !important;
+}
+
+/* --- 2. 关注按钮 --- */
+/* 覆盖红色背景的关注按钮，改为透明背景 */
+[class*="follow"] button,
+[class*="Follow"] button,
+button[class*="follow"],
+button[class*="Follow"] {
+  background-color: transparent !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: rgba(0, 0, 0, 0.35) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* 关注按钮 hover 态 */
+[class*="follow"] button:hover,
+[class*="Follow"] button:hover,
+button[class*="follow"]:hover,
+button[class*="Follow"]:hover {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 关注按钮中的文字 */
+[class*="follow"] span,
+[class*="Follow"] span {
+  color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 关注按钮中的 + 图标 */
+[class*="follow"] svg,
+[class*="Follow"] svg,
+[class*="follow"] button svg,
+[class*="Follow"] button svg,
+button[class*="follow"] svg,
+button[class*="Follow"] svg {
+  fill: rgba(0, 0, 0, 0.35) !important;
+  color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* --- 3. 通知红点/徽章 --- */
+[class*="badge"],
+[class*="Badge"],
+[class*="red-dot"],
+[class*="redDot"],
+[class*="notification"],
+[class*="unread"],
+.dot-red,
+.red-point {
+  background-color: #999 !important;
+  color: #fff !important;
+}
+
+/* --- 4. 点赞/爱心图标 --- */
+/* 已点赞的红色爱心 */
+[class*="like"] svg[class*="active"],
+[class*="Like"] svg[class*="active"],
+[class*="like"][class*="active"],
+[class*="Like"][class*="active"],
+svg[class*="red"],
+svg[class*="Red"],
+svg[fill="#FE2C55"],
+svg[fill="#FF2442"],
+svg[fill="#FF2A4B"],
+svg[fill="#ff2442"],
+svg[fill="#fe2c55"],
+svg[fill="#ff2a4b"] {
+  fill: #999 !important;
+  color: #999 !important;
+}
+
+/* --- 5. Tab 选中态红色下划线 --- */
+[class*="tab"] [class*="active"]::after,
+[class*="Tab"] [class*="active"]::after,
+[class*="tab-item"][class*="active"],
+[class*="tabItem"][class*="active"],
+.nav-active,
+.tab-active {
+  border-color: #999 !important;
+  background-color: #999 !important;
+}
+
+[class*="tab"] [class*="active"],
+[class*="Tab"] [class*="active"] {
+  color: #333 !important;
+}
+
+/* --- 6. 通用红色背景覆盖 --- */
+/* 覆盖所有小红书品牌红色背景 */
+[style*="background-color: #FE2C55"],
+[style*="background-color: #FF2442"],
+[style*="background-color: #FF2A4B"],
+[style*="background-color: #ff2442"],
+[style*="background-color: #fe2c55"],
+[style*="background-color: #ff2a4b"],
+[style*="background-color:#FE2C55"],
+[style*="background-color:#FF2442"],
+[style*="background-color:#FF2A4B"],
+[style*="background-color:#ff2442"],
+[style*="background-color:#fe2c55"],
+[style*="background-color:#ff2a4b"],
+[style*="background-color: rgb(254, 44, 85)"],
+[style*="background-color: rgb(255, 36, 66)"],
+[style*="background-color: rgb(255, 42, 75)"],
+[style*="background-color:rgb(254, 44, 85)"],
+[style*="background-color:rgb(255, 36, 66)"],
+[style*="background-color:rgb(255, 42, 75)"] {
+  background-color: #e8e8e8 !important;
+  background-image: none !important;
+}
+
+/* 覆盖所有小红书品牌红色文字 */
+[style*="color: #FE2C55"],
+[style*="color: #FF2442"],
+[style*="color: #FF2A4B"],
+[style*="color: #ff2442"],
+[style*="color: #fe2c55"],
+[style*="color: #ff2a4b"],
+[style*="color:#FE2C55"],
+[style*="color:#FF2442"],
+[style*="color:#FF2A4B"],
+[style*="color:#ff2442"],
+[style*="color:#fe2c55"],
+[style*="color:#ff2a4b"],
+[style*="color: rgb(254, 44, 85)"],
+[style*="color: rgb(255, 36, 66)"],
+[style*="color: rgb(255, 42, 75)"],
+[style*="color:rgb(254, 44, 85)"],
+[style*="color:rgb(255, 36, 66)"],
+[style*="color:rgb(255, 42, 75)"] {
+  color: #999 !important;
+}
+
+/* 覆盖红色边框 */
+[style*="border-color: #FE2C55"],
+[style*="border-color: #FF2442"],
+[style*="border-color: #FF2A4B"],
+[style*="border-color:#FE2C55"],
+[style*="border-color:#FF2442"],
+[style*="border-color:#FF2A4B"] {
+  border-color: #d0d0d0 !important;
+}
+
+/* 覆盖红色渐变背景 */
+[style*="linear-gradient"][style*="#FE2C55"],
+[style*="linear-gradient"][style*="#FF2442"],
+[style*="linear-gradient"][style*="#FF2A4B"],
+[style*="linear-gradient"][style*="#ff2442"],
+[style*="linear-gradient"][style*="#fe2c55"],
+[style*="linear-gradient"][style*="#ff2a4b"] {
+  background-image: none !important;
+  background-color: #e8e8e8 !important;
+}
+
+/* --- 7. 搜索按钮 / 红色操作按钮 --- */
+button[class*="red"],
+button[class*="Red"],
+[class*="red-btn"],
+[class*="redBtn"],
+[class*="red-button"],
+[class*="redButton"] {
+  background-color: #e8e8e8 !important;
+  border-color: #d0d0d0 !important;
+  color: #666 !important;
+}
+
+/* --- 8. 消息/通知数量角标 --- */
+sup[class*="count"],
+[class*="count-badge"],
+[class*="countBadge"],
+[class*="num-badge"],
+[class*="numBadge"] {
+  background-color: #999 !important;
+}
+
+/* --- 9. 价格/优惠标签 --- */
+[class*="price"],
+[class*="Price"],
+[class*="discount"],
+[class*="Discount"],
+[class*="coupon"],
+[class*="Coupon"] {
+  color: #999 !important;
+}
+
+/* --- 10. SVG 图标中 fill 为红色的通用处理 --- */
+svg[fill="#FE2C55"],
+svg[fill="#FF2442"],
+svg[fill="#FF2A4B"],
+svg[fill="#FF3B30"],
+svg[fill="#ff3b30"],
+svg[fill="rgb(254,44,85)"],
+svg[fill="rgb(255,36,66)"],
+svg[fill="rgb(255,42,75)"] {
+  fill: #999 !important;
+}
+
+/* --- 11. 小红书品牌色类和自定义属性 --- */
+/* 覆盖 CSS 变量中的品牌色 */
+* {
+  --red: #999 !important;
+  --brand-red: #999 !important;
+  --primary-color: #999 !important;
+  --brand-color: #999 !important;
+  --xh-red: #999 !important;
+  --theme-color: #999 !important;
+}
+
+/* 覆盖通用红色工具类 */
+.red,
+.Red,
+.color-red,
+.colorRed,
+.text-red,
+.textRed,
+.bg-red,
+.bgRed,
+.bg-red,
+.background-red,
+.backgroundRed {
+  color: #999 !important;
+  background-color: #e8e8e8 !important;
+}
+
+/* --- 12. 侧边栏/底部导航红色高亮 --- */
+[class*="sidebar"] [class*="active"],
+[class*="nav"] [class*="active"]:not([class*="follow"]),
+[class*="menu"] [class*="active"],
+[class*="Menu"] [class*="active"] {
+  color: #333 !important;
+}
+
+[class*="sidebar"] [class*="active"] svg,
+[class*="nav"] [class*="active"] svg,
+[class*="menu"] [class*="active"] svg {
+  fill: #666 !important;
+}
+
+/* --- 13. 发布按钮/创作中心等红色按钮 --- */
+[class*="publish"],
+[class*="Publish"],
+[class*="create"],
+[class*="Create"],
+[class*="creator"],
+[class*="Creator"] {
+  background-color: #e8e8e8 !important;
+  color: #666 !important;
+}
+
+/* --- 14. 直播标签/热门标签 --- */
+[class*="live"],
+[class*="Live"],
+[class*="hot"],
+[class*="Hot"] {
+  background-color: #d0d0d0 !important;
+  color: #666 !important;
+}
+
+/* --- 15. 进度条/滑块红色 --- */
+[class*="progress"] [class*="bar"],
+[class*="Progress"] [class*="Bar"],
+[class*="slider"] [class*="track"],
+[class*="Slider"] [class*="Track"] {
+  background-color: #999 !important;
+}
+
+/* --- 16. 开关/复选框选中态 --- */
+input[type="checkbox"]:checked,
+[class*="switch"][class*="on"],
+[class*="Switch"][class*="on"],
+[class*="switch"][class*="checked"],
+[class*="Switch"][class*="checked"] {
+  background-color: #999 !important;
+  border-color: #999 !important;
+}
+
+/* --- 17. 链接默认红色 --- */
+a[style*="color: #FE2C55"],
+a[style*="color: #FF2442"],
+a[style*="color: #FF2A4B"] {
+  color: #666 !important;
+}
+
+/* --- 18. 空状态/错误状态红色图标 --- */
+[class*="empty"] svg,
+[class*="Empty"] svg,
+[class*="error"] svg,
+[class*="Error"] svg {
+  fill: #ccc !important;
+  color: #ccc !important;
+}
