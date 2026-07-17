@@ -29,35 +29,80 @@ a[class*="Logo"],
 }
 
 /* --- 2. 关注按钮 --- */
-/* 覆盖红色背景的关注按钮，改为透明背景 */
+/* 覆盖红色背景的关注按钮，改为完全透明/无框线 */
+button.reds-button-new.follow-button,
+button.reds-button-new[class*="follow"],
+button.follow-button,
+.follow-button,
+.reds-button-new,
+button[class*="follow-button"],
+button[class*="Follow-button"],
+button[class*="reds-button-new"],
 [class*="follow"] button,
 [class*="Follow"] button,
 button[class*="follow"],
 button[class*="Follow"] {
   background-color: transparent !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  background: transparent !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-offset: 0 !important;
   color: rgba(0, 0, 0, 0.35) !important;
   background-image: none !important;
   box-shadow: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
-/* 关注按钮 hover 态 */
+/* 关注按钮 hover / focus / active 态 */
+button.reds-button-new.follow-button:hover,
+button.follow-button:hover,
+.follow-button:hover,
+.reds-button-new:hover,
+button[class*="follow-button"]:hover,
+button[class*="Follow-button"]:hover,
+button[class*="reds-button-new"]:hover,
 [class*="follow"] button:hover,
 [class*="Follow"] button:hover,
 button[class*="follow"]:hover,
-button[class*="Follow"]:hover {
+button[class*="Follow"]:hover,
+button.reds-button-new.follow-button:focus,
+button.follow-button:focus,
+.follow-button:focus,
+.reds-button-new:focus,
+button[class*="follow-button"]:focus,
+button[class*="reds-button-new"]:focus,
+button.reds-button-new.follow-button:active,
+button.follow-button:active,
+.follow-button:active,
+.reds-button-new:active {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  border-color: rgba(0, 0, 0, 0.12) !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  outline: none !important;
   color: rgba(0, 0, 0, 0.5) !important;
+  box-shadow: none !important;
 }
 
 /* 关注按钮中的文字 */
+.follow-button span,
+.reds-button-new span,
 [class*="follow"] span,
 [class*="Follow"] span {
   color: rgba(0, 0, 0, 0.35) !important;
 }
 
 /* 关注按钮中的 + 图标 */
+.follow-button svg,
+.reds-button-new svg,
 [class*="follow"] svg,
 [class*="Follow"] svg,
 [class*="follow"] button svg,
@@ -66,6 +111,30 @@ button[class*="follow"] svg,
 button[class*="Follow"] svg {
   fill: rgba(0, 0, 0, 0.35) !important;
   color: rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 强制定位：任何残留的 before/after 伪元素轮廓 */
+.follow-button::before,
+.follow-button::after,
+.reds-button-new::before,
+.reds-button-new::after,
+button[class*="follow-button"]::before,
+button[class*="follow-button"]::after {
+  border: none !important;
+  border-width: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 兜底：关注按钮容器及内部所有元素的边框 */
+[class*="follow-btn"],
+[class*="Follow-btn"],
+[class*="follow-button"] *,
+[class*="Follow-button"] *,
+[class*="follow-btn"] *,
+[class*="Follow-btn"] * {
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 /* --- 3. 通知红点/徽章 --- */

@@ -98,3 +98,60 @@ if (document.readyState === 'loading') {
 window.addEventListener('load', function() {
   replaceFavicons();
 });
+
+// ============================================
+// 兜底：直接用 JS 去除关注按钮的边框/背景
+// CSS 选择器可能因动态类名失效，这里通过文本内容兜底
+// ============================================
+
+const FOLLOW_BUTTON_STYLE = {
+  backgroundColor: 'transparent',
+  background: 'transparent',
+  border: 'none',
+  borderRadius: '0',
+  outline: 'none',
+  boxShadow: 'none',
+  WebkitAppearance: 'none',
+  MozAppearance: 'none',
+  appearance: 'none'
+};
+
+function styleFollowButtons() {
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(function(button) {
+    const text = (button.textContent || '').trim();
+    // 匹配"关注"按钮（可能包含 + 图标，所以只检查是否包含"关注"）
+    if (text.indexOf('关注') !== -1) {
+      Object.assign(button.style, FOLLOW_BUTTON_STYLE);
+      // 同时处理子元素
+      const children = button.querySelectorAll('*');
+      children.forEach(function(child) {
+        child.style.borderColor = 'transparent';
+        child.style.boxShadow = 'none';
+      });
+    }
+  });
+}
+
+function observeFollowButtons() {
+  const observer = new MutationObserver(function() {
+    styleFollowButtons();
+  });
+
+  if (document.body) {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    styleFollowButtons();
+    observeFollowButtons();
+  });
+} else {
+  styleFollowButtons();
+  observeFollowButtons();
+}
