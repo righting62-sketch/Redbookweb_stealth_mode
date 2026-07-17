@@ -150,8 +150,127 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     styleFollowButtons();
     observeFollowButtons();
+    hideAvatars();
+    observeAvatars();
   });
 } else {
   styleFollowButtons();
   observeFollowButtons();
+  hideAvatars();
+  observeAvatars();
+}
+
+// ============================================
+// 隐藏所有用户头像
+// ============================================
+
+function isAvatarElement(element) {
+  if (element.tagName !== 'IMG') return false;
+
+  const src = (element.src || '').toLowerCase();
+  const className = (element.className || '').toLowerCase();
+  const id = (element.id || '').toLowerCase();
+
+  return (
+    className.indexOf('avatar') !== -1 ||
+    id.indexOf('user-hover-guide') !== -1 ||
+    src.indexOf('avatar') !== -1 ||
+    src.indexOf('sns-avatar') !== -1
+  );
+}
+
+function hideElement(element) {
+  element.style.display = 'none';
+  element.style.visibility = 'hidden';
+  element.style.opacity = '0';
+}
+
+function hideAvatars() {
+  // 通过选择器查找
+  const selectors = [
+    '.avatar-item',
+    'img.avatar-item',
+    '[class*="avatar"] img',
+    '[id*="user-hover-guide"] img',
+    'img[src*="avatar"]',
+    'img[src*="sns-avatar"]'
+  ];
+
+  selectors.forEach(function(selector) {
+    try {
+      document.querySelectorAll(selector).forEach(hideElement);
+    } catch (e) {
+      // 忽略非法选择器
+    }
+  });
+
+  // 兜底：遍历所有 img 标签
+  document.querySelectorAll('img').forEach(function(img) {
+    if (isAvatarElement(img)) {
+      hideElement(img);
+      // 同时隐藏父级 avatar 容器
+      let parent = img.parentElement;
+      for (let i = 0; i < 3 && parent; i++) {
+        const parentClass = (parent.className || '').toLowerCase();
+        const parentId = (parent.id || '').toLowerCase();
+        if (
+          parentClass.indexOf('avatar') !== -1 ||
+          parentId.indexOf('user-hover-guide') !== -1
+        ) {
+          hideElement(parent);
+          break;
+        }
+        parent = parent.parentElement;
+      }
+    }
+  });
+}
+
+function observeAvatars() {
+  const observer = new MutationObserver(function(mutations) {
+    let shouldHide = false;
+
+    mutations.forEach(function(mutation) {
+      if (mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            if (node.tagName === 'IMG' && isAvatarElement(node)) {
+              hideElement(node);
+              shouldHide = true;
+            } else if (node.querySelectorAll) {
+              node.querySelectorAll('img').forEach(function(img) {
+                if (isAvatarElement(img)) {
+                  hideElement(img);
+                  shouldHide = true;
+                }
+              });
+            }
+          }
+        });
+      }
+      if (
+        mutation.type === 'attributes' &&
+        mutation.target.tagName === 'IMG' &&
+        (mutation.attributeName === 'src' || mutation.attributeName === 'class')
+      ) {
+        if (isAvatarElement(mutation.target)) {
+          hideElement(mutation.target);
+          shouldHide = true;
+        }
+      }
+    });
+
+    if (shouldHide) {
+      hideAvatars();
+    }
+  });
+
+  if (document.body) {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['src', 'class']
+    });
+  }
 }

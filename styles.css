@@ -28,6 +28,24 @@ a[class*="Logo"],
   opacity: 0.3 !important;
 }
 
+/* --- 头像隐藏 --- */
+/* 隐藏页面中所有用户头像图片本身，保留用户名等其他信息 */
+.avatar-item,
+img.avatar-item,
+[class*="avatar"] img,
+[id*="user-hover-guide"] img,
+img[src*="avatar"],
+img[src*="sns-avatar"],
+img[src*="xhscdn.com/avatar"],
+img[src*="sns-avatar-qc"],
+.user-avatar,
+[class*="user-avatar"] img,
+[class*="UserAvatar"] img {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
 /* --- 2. 关注按钮 --- */
 /* 覆盖红色背景的关注按钮，改为完全透明/无框线 */
 button.reds-button-new.follow-button,
