@@ -35,8 +35,7 @@ a[class*="Logo"],
 button[class*="follow"],
 button[class*="Follow"] {
   background-color: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
   color: rgba(0, 0, 0, 0.35) !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -48,8 +47,7 @@ button[class*="Follow"] {
 button[class*="follow"]:hover,
 button[class*="Follow"]:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
-  border: none !important;
-  border-radius: 0 !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
   color: rgba(0, 0, 0, 0.5) !important;
 }
 
